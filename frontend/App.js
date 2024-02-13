@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Pressable, StyleSheet, Text, View} from 'react-native';
@@ -13,11 +13,23 @@ import Map from './src/pages/Map';
 import Account from './src/pages/Account';
 import Friends from './src/pages/Friends';
 import AddUser from './src/pages/AddUser';
+import { connectWithSocketServer } from './ioServer';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function BottomTabs() {
+  
+  useEffect(() => {
+    connectWithSocketServer()
+    console.log('hehi12')
+    fetch('http://192.168.45.179:3000').then(res=>{
+      console.log('return: ',res)
+    }).catch(error=>{
+      console.log(error)
+    })
+  }, [])
+
   return <BottomTab.Navigator screenOptions={({route})=>({
     tabBarIcon: ({focused, color, size})=>{
       size = focused ? 30 : 25
