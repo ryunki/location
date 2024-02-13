@@ -4,7 +4,7 @@ import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../theme/theme'
 import InputText from './components/InputText';
 import CustomButton from './components/CustomButton';
 import RegisterComponent from './components/RegisterComponent';
-const Auth = () => {
+const Auth = ({setIsAuth}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -12,6 +12,7 @@ const Auth = () => {
 
   const loginSubmitHandler = () => {
     console.log(username, password,confirmPassword)
+    setIsAuth(true)
   }
 
   const registerHandler = () =>{
@@ -44,10 +45,10 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     alignItems:'center',
-    marginVertical:SPACING.space_20,
-    width:'80%',
-    borderRadius: BORDER_RADIUS.radius_25,
-    backgroundColor: COLOR.white100,
+    // marginVertical:SPACING.space_20,
+    // width:'80%',
+    // borderRadius: BORDER_RADIUS.radius_25,
+    backgroundColor: COLOR.white300,
   },
   inputContainer:{
     padding:SPACING.space_20,

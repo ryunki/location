@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../../theme/theme'
 
-const InputText = ({label, onChange,value }) => {
+const InputText = ({label, onChange, value }) => {
   return (
     <View style={styles.inputWrapper}>
       <Text style={[styles.textWhite,styles.textSpacing]}>{label}</Text>
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     margin: SPACING.space_10
   },
   textInput:{
-    backgroundColor:COLOR.white100,
+    backgroundColor:COLOR.white300,
     borderRadius: BORDER_RADIUS.radius_4,
   },
   textWhite:{
