@@ -34,7 +34,7 @@ const Auth = ({setIsAuth}) => {
     setUsername('')
     setPassword('')
     setConfirmPassword('')
-    setIsFormValid({ isValid: true, message:''})
+    setIsFormValid({ isValid: false, message:''})
   }
 
   useEffect(()=>{

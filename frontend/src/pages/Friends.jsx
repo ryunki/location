@@ -31,14 +31,13 @@ const styles = StyleSheet.create({
   friendsContainer: {
     flex:1,
     alignItems:'center',
-    backgroundColor:COLOR.blue100,
+    backgroundColor:COLOR.white300,
   },
   friendsDisplayContainer:{
     flex:2,
     flexDirection:'row',
     marginVertical:SPACING.space_10,
-    // justifyContent:'space-around',
-    backgroundColor:COLOR.blue300,
+    backgroundColor:COLOR.blue100,
     width:'80%',
     borderRadius:BORDER_RADIUS.radius_15,
     justifyContent:'space-evenly',
@@ -50,7 +49,8 @@ const styles = StyleSheet.create({
     borderRadius:BORDER_RADIUS.radius_15,
     width:'80%',
     alignItems:'center',
-    backgroundColor:COLOR.blue300,
+    // backgroundColor:COLOR.blue100,
+    backgroundColor:COLOR.green100,
     padding:SPACING.space_10,
   },
   friendsInvitationWrapper:{

@@ -15,6 +15,8 @@ import Friends from './src/pages/Friends';
 import AddUser from './src/pages/AddUser';
 import { connectWithSocketServer } from './ioServer';
 
+import CustomModal from './src/components/CustomModal';
+
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +24,6 @@ function BottomTabs() {
   
   useEffect(() => {
     connectWithSocketServer()
-    console.log('hehi12')
     fetch('http://192.168.45.179:3000').then(res=>{
       console.log('return: ',res)
     }).catch(error=>{
@@ -55,23 +56,8 @@ function BottomTabs() {
 
 export default function App() {
   // const [isAuth, setIsAuth] = useState(false)
-  const [isAuth, setIsAuth] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
+  const [isAuth, setIsAuth] = useState(true)
 
-  const onPressAddUser = () => {
-    console.log('add u1se2r')
-    setOpenModal(true)
-  }
-  const closeModal = () => {
-    setOpenModal(false)
-  }
-
-  const onPressAddFriend = () => {
-    // console.log(navigation.navigate('AddUser'))
-    // navigation.navigate('AddUser')
-    console.log('add friend')
-    return 
-  }
   // if user is not logged in
   if (!isAuth){
      return <Auth setIsAuth={setIsAuth}/>
@@ -98,7 +84,7 @@ export default function App() {
                   <Text style={styles.header}>Add friend</Text>
                 </Pressable>
             })}/>
-          <Stack.Screen name='AddUser' component={AddUser} />
+          <Stack.Screen name='AddUser' component={AddUser}/>
         </Stack.Navigator>
         {/* <BottomTabs/> */}
     </NavigationContainer>

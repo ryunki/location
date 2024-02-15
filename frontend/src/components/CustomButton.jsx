@@ -19,12 +19,14 @@ export default CustomButton
 const styles = StyleSheet.create({
 
   button:{
+    // flex:1,
     backgroundColor:COLOR.blue100,
     padding:SPACING.space_12,
     borderRadius: BORDER_RADIUS.radius_10,
     marginVertical:SPACING.space_20,
   },
   disabledButton:{
+    // flex:1,
     backgroundColor:COLOR.grey100,
     padding:SPACING.space_12,
     borderRadius: BORDER_RADIUS.radius_10,
@@ -32,5 +34,10 @@ const styles = StyleSheet.create({
   },
   textWhite:{
     color:COLOR.white300,
+    // textAlign:'center',
+    // backgroundColor:'red',
+    flexWrap: 'wrap',
+    // flex: 1,
+    textAlign: 'center',
   },
 })
