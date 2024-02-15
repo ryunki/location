@@ -12,7 +12,7 @@ const Auth = ({setIsAuth}) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isRegister, setIsRegister] = useState(false)
   const [isFormValid, setIsFormValid] = useState({
-    isValid:true,
+    isValid:false,
     message:''
   })
 
