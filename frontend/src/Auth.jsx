@@ -1,38 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../theme/theme'
 import InputText from './components/InputText';
 import CustomButton from './components/CustomButton';
 import RegisterComponent from './components/RegisterComponent';
+import { validateLoginForm, validateRegisterForm } from '../utils/authValidator';
+
 const Auth = ({setIsAuth}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isRegister, setIsRegister] = useState(false)
+  const [isFormValid, setIsFormValid] = useState({
+    isValid:true,
+    message:''
+  })
 
-  const loginSubmitHandler = () => {
-    console.log(username, password,confirmPassword)
-    setIsAuth(true)
+  const submitHandler = () => {
+    console.log(isFormValid)
+    if (isFormValid.message === "press button to register"){
+      // call register api
+    }
+    if (isFormValid.message === "press button to login"){
+      // call login api
+    }
+    // after calling API 
+    // setIsAuth(true) to go back 
   }
-
-  const registerHandler = () =>{
-    console.log('register')
+  // reset form after toggle
+  const authToggleHandler = () =>{
+    // after calling API
     setIsRegister(!isRegister)
+    setUsername('')
+    setPassword('')
+    setConfirmPassword('')
+    setIsFormValid({ isValid: true, message:''})
   }
+
+  useEffect(()=>{
+    if (!isRegister) {
+      setIsFormValid(validateLoginForm({username, password}))
+    }else{
+      setIsFormValid(validateRegisterForm({username, password, confirmPassword}))
+    }
+  },[username, password, confirmPassword])
 
   return (
     <View style={styles.loginContainer}>
       <View style={styles.inputContainer}>
-        <InputText label='username' onChange={setUsername} value={username}/>
-        <InputText label='password' onChange={setPassword} value={password}/>
+        <InputText label='Username' onChange={setUsername} value={username} type='text'/>
+        <InputText label='Password' onChange={setPassword} value={password} type='password' />
         {isRegister && 
-          <InputText label='confirm password' onChange={setConfirmPassword} value={confirmPassword}/>
+          <InputText label='Confirm password' onChange={setConfirmPassword} value={confirmPassword} type='password'/>
         }
+        {!isFormValid.isValid ? <Text style={styles.displayMessage}>{isFormValid.message}</Text>: <Text style={styles.displayMessage}>{isFormValid.message}</Text>}
       </View>
-      <CustomButton title={isRegister ? 'Submit' : 'Login'} onPressButton={loginSubmitHandler}/>
-      
-      <Pressable onPress={registerHandler} >
-        <RegisterComponent onPress={registerHandler} title={isRegister ? 'back to login ':'register'}/>
+      <CustomButton title={isRegister ? 'Register' : 'Login'} onPressButton={submitHandler} disable={!isFormValid.isValid}/>
+      <Pressable onPress={authToggleHandler} >
+        <RegisterComponent title={isRegister ? 'back to login ':'register'}/>
       </Pressable>
     </View>
   )
@@ -65,4 +90,10 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.radius_10,
     marginVertical:SPACING.space_20,
   },
+  displayMessage: {
+    // backgroundColor:'red',
+    color: COLOR.white300,
+    textAlign:'center',
+    fontWeight:'200'
+  }
 })

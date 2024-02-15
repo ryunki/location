@@ -12,6 +12,9 @@ export const COLOR = {
   green100 : 'rgb(13,146,118)',
   green200 : 'rgb(32,176,146)',
   green300 : 'rgb(46,209,175)',
+  grey100 : 'rgb(128, 128, 128)',
+  red100 : 'rgb(255, 26, 26)',
+
 }
 
 export const SPACING = {

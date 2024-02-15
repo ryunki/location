@@ -3,11 +3,11 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../../theme/theme'
 
-const InputText = ({label, onChange, value }) => {
+const InputText = ({label, onChange, value, type }) => {
   return (
     <View style={styles.inputWrapper}>
       <Text style={[styles.textWhite,styles.textSpacing]}>{label}</Text>
-      <TextInput style={styles.textInput} onChangeText={onChange} value={value}/>
+      <TextInput style={styles.textInput} onChangeText={onChange} value={value} secureTextEntry={type === 'password'}/>
     </View>
   )
 }

@@ -1,11 +1,12 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { StyleSheet, Text, TextInput, View, Pressable, Button } from 'react-native';
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../../theme/theme'
 
-const CustomButton = ({title, onPressButton}) => {
+const CustomButton = ({title, onPressButton, disable}) => {
+console.log(disable)
   return (
-    <Pressable onPress={onPressButton}>
-      <View style={styles.button}>
+    <Pressable onPress={onPressButton} disabled={disable} >
+      <View style={disable ? styles.disabledButton : styles.button }>
         <Text style={styles.textWhite}>{title}</Text>
       </View>
     </Pressable>
@@ -19,11 +20,16 @@ const styles = StyleSheet.create({
 
   button:{
     backgroundColor:COLOR.blue100,
-    padding:SPACING.space_14,
+    padding:SPACING.space_12,
     borderRadius: BORDER_RADIUS.radius_10,
     marginVertical:SPACING.space_20,
   },
-
+  disabledButton:{
+    backgroundColor:COLOR.grey100,
+    padding:SPACING.space_12,
+    borderRadius: BORDER_RADIUS.radius_10,
+    marginVertical:SPACING.space_20,
+  },
   textWhite:{
     color:COLOR.white300,
   },
