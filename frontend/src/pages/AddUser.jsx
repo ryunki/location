@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../../theme/theme'
-import InputText from '../components/InputText';
+import CustomInputText from '../components/CustomInputText';
 import CustomButton from '../components/CustomButton';
 import CustomModal from '../components/CustomModal';
 
@@ -12,7 +12,6 @@ const AddUser = ({navigation}) => {
   const [modalMessage, setModalMessage] = useState('')
 
   const onPressAddUser = () => {
-    console.log('add user', username, modalVisible)
     setMessage(username)
     // API to send username for invitation
     // clear input
@@ -20,6 +19,7 @@ const AddUser = ({navigation}) => {
     setModalVisible(true)
     
     setTimeout(()=>{
+      setModalVisible(false)
       navigation.navigate('Friends')
     },1000)
   }
@@ -30,7 +30,7 @@ const AddUser = ({navigation}) => {
   return (
     <View style={styles.centeredView}>
       <View style={styles.addUserContainer}>
-        <InputText label='User name' onChange={setUsername} value={username} styleTitle={styles.styleTitle} styleTextInput={styles.styleTextInput}/>
+        <CustomInputText label='User name' onChange={setUsername} value={username} styleTitle={styles.styleTitle} styleTextInput={styles.styleTextInput}/>
         <CustomButton title='Add User' onPressButton={onPressAddUser} disable={username ? false: true}/>
       </View>
     </View>

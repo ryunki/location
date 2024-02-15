@@ -1,4 +1,4 @@
-function validateUsername(username) {
+export function validateUsername(username) {
   return username.length > 2 && username.length < 13
     ? {
         isValid: true,

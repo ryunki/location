@@ -1,16 +1,9 @@
 import React, {useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
-import { COLOR, FONT_SIZE } from '../../theme/theme';
+import { COLOR, FONT_SIZE, SPACING } from '../../theme/theme';
 
-const CustomModal = ({modalVisible, setModalVisible, modalMessage, modalTitle}) => {
+const CustomModal = ({buttonVisible,buttonText, modalVisible, setModalVisible, modalMessage, modalTitle, modalInterval}) => {
 
-  const modalInterval = () => {
-    // close modal after 1 second
-    setTimeout(()=>{
-      setModalVisible(false)
-    },1000)
-  }
-  console.log(modalMessage)
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -26,11 +19,13 @@ const CustomModal = ({modalVisible, setModalVisible, modalMessage, modalTitle}) 
           <View style={styles.modalView}>
             <Text style={styles.modalTitle}>{modalTitle}</Text>
             <Text style={styles.modalMessage}>{modalMessage}</Text>
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable> */}
+            {buttonVisible && 
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}>
+                <Text style={styles.textStyle}>{buttonText}</Text>
+              </Pressable>
+            }
           </View>
         </View>
       </Modal>
@@ -54,7 +49,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: COLOR.blue200,
     borderRadius: 20,
-    padding: 35,
+    padding: SPACING.space_20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -68,13 +63,14 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     padding: 10,
+    marginTop:SPACING.space_18,
     elevation: 2,
   },
   buttonOpen: {
     backgroundColor: '#F194FF',
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: COLOR.red100,
   },
   textStyle: {
     color: 'white',

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../theme/theme'
-import InputText from './components/InputText';
+import InputText from './components/CustomInputText';
 import CustomButton from './components/CustomButton';
 import RegisterComponent from './components/RegisterComponent';
 import { validateLoginForm, validateRegisterForm } from '../utils/authValidator';

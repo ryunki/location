@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { COLOR, BORDER_RADIUS, FONT_SIZE, SPACING } from '../../theme/theme'
 
-const InputText = ({label, onChange, value, type, styleTitle, styleTextInput}) => {
+const CustomInputText = ({label, onChange, value, type, styleTitle, styleTextInput}) => {
   return (
     <View style={styles.inputWrapper}>
       <Text style={[styles.textTitle, styleTitle]}>{label}</Text>
@@ -12,7 +12,7 @@ const InputText = ({label, onChange, value, type, styleTitle, styleTextInput}) =
   )
 }
 
-export default InputText
+export default CustomInputText
 
 const styles = StyleSheet.create({
   inputWrapper: {
