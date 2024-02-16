@@ -1,8 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 const { createServer } = require('http');
 const { Server } = require('socket.io');
+
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
 
 const server = createServer(app);
 const io = new Server(server,{
@@ -19,9 +24,20 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 });
 // console.log(io)
+
+
+const authRoutes = require('./routes/authRoutes')
+
+// mongodb connection
+const connectDB = require("./config/db");
+connectDB();
+
+app.use('/api/auth', authRoutes)
+
 app.get('/', (req, res) => {
   res.send('hey from backend');
 });
+
 
 const PORT = 3000
 server.listen(PORT, () => {
