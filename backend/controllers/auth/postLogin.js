@@ -11,7 +11,7 @@ const postLogin = async(req,res,next)=>{
     const userExists = await UserModel.findOne({username})
 
     if (userExists && await bcrypt.compare(password, userExists.password)){
-      const token = jwt.sign({ username }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' })
+      const token = jwt.sign({ userId: userExists._id, username }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' })
       res.status(200).json({
         userDetails:{
           _id: userExists._id,

@@ -26,13 +26,13 @@ io.on('connection', (socket) => {
 // console.log(io)
 
 
-const authRoutes = require('./routes/authRoutes')
+const apiRoutes = require('./routes/apiRoutes')
 
 // mongodb connection
 const connectDB = require("./config/db");
 connectDB();
 
-app.use('/api/auth', authRoutes)
+app.use('/api', apiRoutes)
 
 app.get('/', (req, res) => {
   res.send('hey from backend');
